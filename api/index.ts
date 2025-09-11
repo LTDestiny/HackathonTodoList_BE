@@ -78,13 +78,13 @@ app.use("*", (req, res) => {
 export default function handler(req: VercelRequest, res: VercelResponse) {
   try {
     return app(req, res);
-  } catch (error) {
+  } catch (error: any) {
     console.error("Serverless function error:", error);
     return res.status(500).json({
       error: "Internal server error",
       message:
         process.env.NODE_ENV === "development"
-          ? error.message
+          ? error?.message || "Unknown error"
           : "Something went wrong",
     });
   }
