@@ -13,7 +13,7 @@ export class AuthService {
       throw new Error("The email is already in use.");
     }
 
-    const passwordHash = await bcrypt.hash(data.password, 18);
+    const passwordHash = await bcrypt.hash(data.password, 12);
 
     const user = await prisma.user.create({
       data: {
